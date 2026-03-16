@@ -12,10 +12,10 @@ import Layout from './components/Layout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Inventory from './pages/Inventory';
+import Sales from './pages/Sales';
+import Purchasing from './pages/Purchasing';
 
 // Placeholder components for other pages
-const Purchasing = () => <div className="p-4"><h1 className="text-2xl font-bold">Purchasing Module</h1><p>PO, Receive Items, Return</p></div>;
-const Sales = () => <div className="p-4"><h1 className="text-2xl font-bold">Sales Module</h1><p>SO, Delivery Order, Return</p></div>;
 const Finance = () => <div className="p-4"><h1 className="text-2xl font-bold">Finance Module</h1><p>Kas In/Out, Transfer, AR, AP, Giro</p></div>;
 const Accounting = () => <div className="p-4"><h1 className="text-2xl font-bold">Accounting Module</h1><p>Journal Entry, Close Book</p></div>;
 const Reports = () => <div className="p-4"><h1 className="text-2xl font-bold">Reports Module</h1><p>Sales, Purchase, AR, AP, Inventory, Accounting</p></div>;
