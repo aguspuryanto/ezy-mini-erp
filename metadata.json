@@ -1,0 +1,5 @@
+{
+  "name": "Custom Mini ERP",
+  "description": "A comprehensive mini ERP system for managing Purchasing, Sales, Inventory, Finance, and Accounting.",
+  "requestFramePermissions": []
+}

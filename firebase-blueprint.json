@@ -1,0 +1,130 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the ERP system",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "user"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role", "createdAt"]
+    },
+    "Item": {
+      "title": "Item",
+      "description": "An inventory item",
+      "type": "object",
+      "properties": {
+        "sku": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "cost": { "type": "number" },
+        "price": { "type": "number" },
+        "stock": { "type": "number" },
+        "unit": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sku", "name", "cost", "price", "stock", "unit", "createdAt", "updatedAt"]
+    },
+    "PurchaseOrder": {
+      "title": "Purchase Order",
+      "description": "A purchase order to a supplier",
+      "type": "object",
+      "properties": {
+        "poNumber": { "type": "string" },
+        "supplierName": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["Draft", "Approved", "Received", "Cancelled"] },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "itemId": { "type": "string" },
+              "itemName": { "type": "string" },
+              "quantity": { "type": "number" },
+              "price": { "type": "number" },
+              "total": { "type": "number" }
+            },
+            "required": ["itemId", "itemName", "quantity", "price", "total"]
+          }
+        },
+        "totalAmount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["poNumber", "supplierName", "date", "status", "items", "totalAmount", "createdAt", "updatedAt"]
+    },
+    "SalesOrder": {
+      "title": "Sales Order",
+      "description": "A sales order from a customer",
+      "type": "object",
+      "properties": {
+        "soNumber": { "type": "string" },
+        "customerName": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["Draft", "Approved", "Delivered", "Cancelled"] },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "itemId": { "type": "string" },
+              "itemName": { "type": "string" },
+              "quantity": { "type": "number" },
+              "price": { "type": "number" },
+              "total": { "type": "number" }
+            },
+            "required": ["itemId", "itemName", "quantity", "price", "total"]
+          }
+        },
+        "totalAmount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["soNumber", "customerName", "date", "status", "items", "totalAmount", "createdAt", "updatedAt"]
+    },
+    "FinanceTransaction": {
+      "title": "Finance Transaction",
+      "description": "A financial transaction record",
+      "type": "object",
+      "properties": {
+        "transactionNumber": { "type": "string" },
+        "type": { "type": "string", "enum": ["KasIn", "KasOut", "Transfer", "AR", "AP", "GiroReceipt", "GiroReject"] },
+        "date": { "type": "string", "format": "date-time" },
+        "amount": { "type": "number" },
+        "description": { "type": "string" },
+        "referenceId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["transactionNumber", "type", "date", "amount", "description", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Collection of users"
+    },
+    "items": {
+      "schema": { "$ref": "#/entities/Item" },
+      "description": "Collection of inventory items"
+    },
+    "purchase_orders": {
+      "schema": { "$ref": "#/entities/PurchaseOrder" },
+      "description": "Collection of purchase orders"
+    },
+    "sales_orders": {
+      "schema": { "$ref": "#/entities/SalesOrder" },
+      "description": "Collection of sales orders"
+    },
+    "finance_transactions": {
+      "schema": { "$ref": "#/entities/FinanceTransaction" },
+      "description": "Collection of financial transactions"
+    }
+  }
+}
